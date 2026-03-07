@@ -111,7 +111,7 @@ export function LlamadoForm({ tenantNivel, onSave }: LlamadoFormProps) {
             <select
               value={datos.tipo_cargo}
               onChange={(e) => updateField('tipo_cargo', e.target.value as TipoCargo)}
-              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
             >
               {TIPOS_CARGO.map((t) => (
                 <option key={t.value} value={t.value}>
@@ -131,7 +131,7 @@ export function LlamadoForm({ tenantNivel, onSave }: LlamadoFormProps) {
               value={datos.cargo_nombre}
               onChange={(e) => updateField('cargo_nombre', e.target.value)}
               required
-              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
               placeholder="Ej: Maestro de Grado, Preceptor, etc."
             />
           </div>
@@ -144,7 +144,7 @@ export function LlamadoForm({ tenantNivel, onSave }: LlamadoFormProps) {
             <select
               value={datos.causa_suplencia}
               onChange={(e) => updateField('causa_suplencia', e.target.value as CausaSuplencia)}
-              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
             >
               {CAUSAS.map((c) => (
                 <option key={c.value} value={c.value}>{c.label}</option>
@@ -160,7 +160,7 @@ export function LlamadoForm({ tenantNivel, onSave }: LlamadoFormProps) {
             <select
               value={datos.instancia_llamado}
               onChange={(e) => updateField('instancia_llamado', parseInt(e.target.value))}
-              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
             >
               <option value={1}>1° Llamado</option>
               <option value={2}>2° Llamado</option>
@@ -177,7 +177,7 @@ export function LlamadoForm({ tenantNivel, onSave }: LlamadoFormProps) {
             <select
               value={datos.nivel}
               onChange={(e) => updateField('nivel', e.target.value as NivelEducativo)}
-              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
             >
               {NIVELES.map((n) => (
                 <option key={n} value={n}>{n}</option>
@@ -193,7 +193,7 @@ export function LlamadoForm({ tenantNivel, onSave }: LlamadoFormProps) {
             <select
               value={datos.modalidad}
               onChange={(e) => updateField('modalidad', e.target.value as Modalidad)}
-              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
             >
               <option value="presencial">Presencial</option>
               <option value="virtual">Virtual</option>
@@ -208,7 +208,7 @@ export function LlamadoForm({ tenantNivel, onSave }: LlamadoFormProps) {
             <select
               value={datos.turno || ''}
               onChange={(e) => updateField('turno', (e.target.value || undefined) as Turno | undefined)}
-              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
             >
               <option value="">Seleccionar...</option>
               {TURNOS.map((t) => (
@@ -226,7 +226,7 @@ export function LlamadoForm({ tenantNivel, onSave }: LlamadoFormProps) {
               type="text"
               value={datos.articulo || ''}
               onChange={(e) => updateField('articulo', e.target.value || undefined)}
-              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
               placeholder="Ej: 40-0, 50-7, Cargo vacante"
             />
           </div>
@@ -242,7 +242,7 @@ export function LlamadoForm({ tenantNivel, onSave }: LlamadoFormProps) {
                 value={datos.materia || ''}
                 onChange={(e) => updateField('materia', e.target.value)}
                 required={needsMateria}
-                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 placeholder="Ej: Educacion Fisica, Musica, Plastica"
               />
             </div>
@@ -258,7 +258,7 @@ export function LlamadoForm({ tenantNivel, onSave }: LlamadoFormProps) {
                 type="number"
                 value={datos.horas_catedra || ''}
                 onChange={(e) => updateField('horas_catedra', e.target.value ? parseInt(e.target.value) : undefined)}
-                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 min={1}
               />
             </div>
@@ -273,7 +273,7 @@ export function LlamadoForm({ tenantNivel, onSave }: LlamadoFormProps) {
           <textarea
             value={datos.contexto_adicional || ''}
             onChange={(e) => updateField('contexto_adicional', e.target.value || undefined)}
-            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
             rows={2}
             placeholder="Informacion adicional relevante para el analisis..."
           />
