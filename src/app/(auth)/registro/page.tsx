@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import type { NivelEducativo, RolUsuario } from '@/lib/types'
+import { PasswordInput } from '@/components/ui/password-input'
 
 const NIVELES: NivelEducativo[] = [
   'Inicial', 'Primario', 'Secundario Orientado', 'Secundario Técnico',
@@ -252,13 +253,11 @@ export default function RegistroPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Contraseña *
                   </label>
-                  <input
-                    type="password"
+                  <PasswordInput
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={setPassword}
                     required
                     minLength={6}
-                    className={INPUT_CLASS}
                     placeholder="Minimo 6 caracteres"
                   />
                 </div>
