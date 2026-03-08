@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import type { NivelEducativo, RolUsuario } from '@/lib/types'
@@ -24,7 +23,6 @@ export default function RegistroPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-  const supabase = createClient()
 
   // Step 1: Rol
   const [rol, setRol] = useState<RolUsuario>('directivo')
@@ -48,43 +46,38 @@ export default function RegistroPage() {
     setLoading(true)
     setError('')
 
-    const { data: tenant, error: tenantError } = await supabase
-      .from('tenants')
-      .insert({
-        nombre: nombreTenant,
-        cue: cue || null,
-        nivel,
-        departamento: departamento || null,
-        localidad: localidad || null,
-      })
-      .select('id')
-      .single()
-
-    if (tenantError) {
-      setError('Error al crear el espacio de trabajo. Contacte al administrador.')
-      setLoading(false)
-      return
-    }
-
-    const { error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
+    try {
+      const res = await fetch('/api/auth/registro', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          password,
           nombre_completo: nombreCompleto,
-          tenant_id: tenant.id,
           rol,
-        },
-      },
-    })
+          tenant: {
+            nombre: nombreTenant,
+            cue: cue || null,
+            nivel,
+            departamento: departamento || null,
+            localidad: localidad || null,
+          },
+        }),
+      })
 
-    if (signUpError) {
-      setError(signUpError.message)
+      const data = await res.json()
+
+      if (!res.ok) {
+        setError(data.error || 'Error al registrarse')
+        setLoading(false)
+        return
+      }
+
+      router.push('/login?mensaje=registro-exitoso')
+    } catch {
+      setError('Error de conexion. Intente nuevamente.')
       setLoading(false)
-      return
     }
-
-    router.push('/login?mensaje=registro-exitoso')
   }
 
   function handleNext(e: React.FormEvent) {
