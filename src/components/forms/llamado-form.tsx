@@ -301,14 +301,23 @@ export function LlamadoForm({ tenantNivel, onSave }: LlamadoFormProps) {
             )}
           </button>
 
-          {resultado && resultado.analisis.llamado_valido && onSave && (
+          {resultado && onSave && (
             <button
               type="button"
               onClick={handleGuardar}
               disabled={guardando}
-              className="bg-green-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className={`text-white px-6 py-2.5 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-colors ${
+                resultado.analisis.llamado_valido
+                  ? 'bg-green-600 hover:bg-green-700'
+                  : 'bg-amber-600 hover:bg-amber-700'
+              }`}
             >
-              {guardando ? 'Guardando...' : 'Guardar llamado'}
+              {guardando
+                ? 'Guardando...'
+                : resultado.analisis.llamado_valido
+                  ? 'Guardar llamado validado'
+                  : 'Guardar como borrador'
+              }
             </button>
           )}
         </div>
