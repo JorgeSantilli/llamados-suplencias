@@ -2,17 +2,21 @@
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { PasswordInput } from '@/components/ui/password-input'
+import { Suspense } from 'react'
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+  const searchParams = useSearchParams()
   const supabase = createClient()
+
+  const mensaje = searchParams.get('mensaje')
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault()
@@ -43,6 +47,12 @@ export default function LoginPage() {
               Sistema de asistencia normativa
             </p>
           </div>
+
+          {mensaje === 'registro-exitoso' && (
+            <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-sm mb-4">
+              Cuenta creada con exito. Ya podes ingresar con tu email y contraseña.
+            </div>
+          )}
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
@@ -100,5 +110,13 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   )
 }
